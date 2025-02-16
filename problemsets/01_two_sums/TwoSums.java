@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
 * Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
@@ -55,11 +57,13 @@ public class TwoSums {
     }
 
     public int[] two_sums_reverse(int[] num, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
         for(int i = 0; i < num.length; i++) {
-            int j = (num.length-1) - i;
-            if(num[i] + num[j] == target) {
-                return new int[] {i,j};
+            int diff = target - num[i];
+            if(map.containsKey(diff)) {
+                return new int[] {map.get(diff), i};
             }
+            map.put(num[i], i);
         }
         return new int[0];
     }
@@ -82,10 +86,11 @@ public class TwoSums {
       int target5 = 0;
 
       TwoSums sums = new TwoSums();
-      System.out.println(Arrays.toString(sums.two_sums(test1, target1)));
-      System.out.println(Arrays.toString(sums.two_sums(test2, target2)));
-      System.out.println(Arrays.toString(sums.two_sums(test3, target3)));
-      System.out.println(Arrays.toString(sums.two_sums(test4, target4)));
+      System.out.println(Arrays.toString(sums.two_sums_reverse(test1, target1)));
+      System.out.println(Arrays.toString(sums.two_sums_reverse(test2, target2)));
+      System.out.println(Arrays.toString(sums.two_sums_reverse(test3, target3)));
+      System.out.println(Arrays.toString(sums.two_sums_reverse(test4, target4)));
+      System.out.println(Arrays.toString(sums.two_sums_reverse(test5, target5)));
 
 
     }
