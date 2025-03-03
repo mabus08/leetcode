@@ -35,19 +35,14 @@ public class Solution {
     }
 
     public static void printList(ListNode list) {
-        if(list == null)  {
-            System.out.println("[]");
-            return;
-        }
-
         System.out.print("[");
-        do {
+        while(list != null) {
             System.out.print(list.val);
             list = list.next;
             if(list != null) {
                 System.out.print(",");
             }
-        } while(list != null);
+        };
         System.out.println("]");
     }
 
